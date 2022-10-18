@@ -1,0 +1,151 @@
+@import "common";
+
+$smallSizeBoundary: 900px;
+
+main {
+  display: grid;
+  grid-template-areas:
+  "about-me   main-column"
+  "extra-info main-column"
+  ".          main-column";
+  grid-template-columns: max(35vw) auto;
+  grid-template-rows: min-content min-content auto;
+
+  div.about-me-container {
+    grid-area: about-me;
+  }
+
+  div.extra-info-container {
+    grid-area: extra-info;
+
+    @media (min-width: $smallSizeBoundary) {
+      margin-top: -1em;
+    }
+  }
+
+  div.main-column-container {
+    grid-area: main-column;
+  }
+
+  section {
+    @include content-container;
+
+    @import "project_list_item";
+    @include project_list(true, true);
+
+    h3 {
+      font-size: 2em;
+    }
+
+    &#about-me {
+      font-size: 1.05em;
+    }
+
+    &#contact-info p {
+      margin-top: 0.5em;
+
+      &:nth-of-type(1) {
+        margin-top: 0;
+      }
+    }
+
+    &#education-history {
+      div {
+        p:nth-of-type(1) {
+          font-size: 1.2em;
+          margin-bottom: 0.4em;
+        }
+
+        p:nth-of-type(2) {
+          font-size: 0.95em;
+          margin-bottom: 0.2em;
+
+          > span {
+            font-size: 0.85em;
+            color: var(--PortfolioGrey);
+          }
+        }
+
+        > hr {
+          color: var(--PortfolioGrey);
+          margin: 0.5em 0;
+        }
+
+        &:nth-last-of-type(1) > hr {
+          display: none;
+        }
+      }
+    }
+
+    &#skill-set {
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+
+      hr {
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+      }
+
+      p {
+        margin-top: 0.5em;
+        margin-bottom: 0.2em;
+      }
+
+      .skill-container {
+        height: 15px;
+        background: var(--PortfolioGrey);
+
+        .skill-bar {
+          height: 15px;
+          background: var(--Accent);
+        }
+      }
+    }
+
+    &#work-experience {
+      @include content-container;
+      @import "work_exp_mixin";
+      @include work_exp_section;
+      display: flex;
+      flex-direction: column;
+      margin-left: 0;
+      min-width: auto;
+      width: auto;
+
+      a {
+        font-size: 1.25em;
+
+        &:hover {
+          color: var(--SpecialTextColor);
+        }
+
+        &.more-work-experience {
+          align-self: flex-end;
+          font-size: 1em;
+        }
+      }
+
+      hr {
+        margin-top: 1em;
+      }
+
+      @import "work_experience_list_item";
+    }
+  }
+}
+
+@media (max-width: $smallSizeBoundary) {
+  main {
+    display: flex;
+    flex-direction: column;
+
+    section#project-list, section#work-experience {
+      margin-top: 0;
+      margin-left: 1em;
+    }
+
+    div.extra-info-container {
+      margin-top: -1em;
+    }
+  }
+}

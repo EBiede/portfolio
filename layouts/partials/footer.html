@@ -1,0 +1,9 @@
+<footer>
+  <p>
+  {{ with .Site.Copyright }}
+  &copy; {{ . }} {{ now.Format "2006" }}
+  {{ else }}
+  &copy; {{ now.Year }} {{- with .Site.Author }} {{ .name }}. {{- end }} <a href='{{ "" | relURL }}'>{{ .Site.Title }}</a>
+  {{ end }}
+  </p>
+</footer>

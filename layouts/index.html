@@ -1,0 +1,51 @@
+{{ define "main" }}
+<main>
+  <div class="about-me-container">
+    <section id="about-me">
+      {{ .Content }}
+    </section>
+
+    <section id="contact-info">
+      {{ if isset .Site.Params.author "location" }}<p>{{ .Site.Params.author.location }}</p>{{ end }}
+      {{ if isset .Site.Params.author "email" }}
+      <p><a href="mailto:{{ .Site.Params.author.email }}">{{ .Site.Params.author.email }}</a></p>
+      {{ end }}
+      {{ if isset .Site.Params.author "phoneNumber" }}
+      <p><a href="tel:{{ .Site.Params.author.phoneNumber }}">{{ .Site.Params.author.phoneNumber }}</a></p>
+      {{ end }}
+      <p><a href="{{ .Site.BaseURL }}">{{ .Site.BaseURL }}</a></p>
+    </section>
+  </div>
+
+  <div class="main-column-container">
+    {{ partial "project-list.html" . }}
+
+    {{ partial "work-experience-list.html" . }}
+  </div>
+
+  <div class="extra-info-container">
+    <section id="skill-set" aria-role="list">
+      <h3>Skills</h3>
+      <hr />
+      {{ range .Site.Params.author.skills }}
+      <div aria-role="listitem">
+        <p>{{ .name }}</p>
+        <div class="skill-container">
+          <div class="skill-bar" style="width:{{ .percent }}%;"></div>
+        </div>
+      </div>
+      {{ end }}
+    </section>
+
+    <section id="education-history" aria-role="list">
+      {{ range .Site.Params.author.education }}
+      <div aria-role="list-item">
+        <p>{{ .degreeName }}</p>
+        <p>{{ .school }} <span>({{ .dates }})</span></p>
+        <hr />
+      </div>
+      {{ end }}
+    </section>
+  </div>
+</main>
+{{ end }}

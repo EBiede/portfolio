@@ -1,0 +1,41 @@
+@mixin content-container {
+  background-color: var(--PortfolioWhite);
+  border-radius: 0.5em;
+  margin: 1em;
+  padding: 1em;
+}
+
+main {
+  background-color: var(--Accent);
+}
+
+/************************
+-------- Footer ---------
+************************/
+
+footer {
+  width: 100%;
+
+  p {
+    color: var(--TextOnDarkColor);
+    margin: 1em 0;
+    text-align: center;
+  }
+}
+
+
+/***************************
+-------- Scrolling ---------
+***************************/
+
+body {
+  //noinspection CssBrowserCompatibilityForProperties
+  scroll-behavior: auto;
+}
+
+@media screen and (not prefers-reduced-motion) and (update: fast) {
+  body {
+    //noinspection CssBrowserCompatibilityForProperties
+    scroll-behavior: smooth;
+  }
+}
