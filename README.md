@@ -1,4 +1,4 @@
-[Elijah Biede's Personal Website](https://ebiede.com)
+[Hundter Biede's Personal Website](https://hbiede.com)
 ==============
 
 ## How To Use
