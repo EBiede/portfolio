@@ -5,7 +5,9 @@
     <hr>
     <ul style="margin-top:0.7em;">
       {{ range .Data.Pages }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
+      <li><a href="{{ .Permalink }}">
+        {{ .LinkTitle }}{{ if isset .Params "company" }}&nbsp;-&nbsp;{{ .Params.Company }}{{ end }}
+      </a></li>
       {{ end }}
     </ul>
   </section>
